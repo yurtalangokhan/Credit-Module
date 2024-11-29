@@ -1,0 +1,73 @@
+allprojects {
+	apply plugin: 'java'
+	apply plugin: 'java-library'
+	apply plugin: 'jacoco'
+	apply plugin: 'maven-publish'
+	apply plugin: 'idea'
+	group 'tr.com.havelsan.main.core'
+
+	version(projectVersion)
+
+	sourceCompatibility = gradle.environment.java.sourceCompatibility
+	targetCompatibility = gradle.environment.java.targetCompatibility
+
+	compileJava.options.encoding = gradle.environment.encoding.type
+	compileTestJava.options.encoding = gradle.environment.encoding.type
+
+	repositories {
+		maven {
+			url 'https://repo.maven.apache.org/maven2'
+		}
+		mavenCentral()
+	}
+}
+
+
+subprojects {
+	apply plugin: 'java-library'
+
+
+	configurations.all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+
+	idea {
+		module {
+			sourceDirs += file('generated/')
+			generatedSourceDirs += file('generated/')
+		}
+	}
+
+
+	dependencies {
+
+		/*External Dependencies*/
+		implementation(
+				[group: 'org.springframework.data', name: 'spring-data-commons', version: springBootVersion],
+				[group: 'org.javers', name: 'javers-core', version: javersVersion],
+				[group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springBootVersion],
+				[group: 'org.hibernate.orm', name: 'hibernate-core', version: hibernateVersion],
+				[group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: jakartaPersistenceVersion],
+				[group: 'jakarta.transaction', name: 'jakarta.transaction-api', version: jakartaTransactionVerson],
+				[group: 'com.querydsl', name: 'querydsl-jpa', version: queryDslVersion, classifier: 'jakarta'],
+				[group: 'com.querydsl', name: 'querydsl-sql', version: queryDslVersion],
+				[group: 'org.javers', name: 'javers-core', version: javersVersion],
+				[group: 'com.github.f4b6a3', name: 'uuid-creator', version: uuidCreatorVersion],
+				[group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: springDocOpenApiVersion],
+				[group: 'org.apache.commons', name: 'commons-collections4', version: apacheCommonCollectionVersion],
+				[group: 'org.apache.commons', name: 'commons-lang3', version: apacheCommonVersion],
+				[group: 'org.apache.logging.log4j', name: 'log4j-spring-boot', version: log4jVersion],
+		)
+		compileOnly(
+				[group: 'org.mapstruct', name: 'mapstruct', version: mapStructVersion],
+				[group: 'org.mapstruct', name: 'mapstruct-processor', version: mapStructVersion],
+				[group: 'org.projectlombok', name: 'lombok', version: lombokVersion]
+		)
+		annotationProcessor(
+				[group: 'com.querydsl', name: 'querydsl-apt', version: queryDslVersion, classifier: 'jakarta'],
+				[group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: jakartaPersistenceVersion],
+				[group: 'org.mapstruct', name: 'mapstruct-processor', version: mapStructVersion],
+				[group: 'org.projectlombok', name: 'lombok', version: lombokVersion]
+		)
+	}
+}

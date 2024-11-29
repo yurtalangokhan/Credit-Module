@@ -1,0 +1,46 @@
+pluginManagement {
+    plugins {
+        id 'java'
+        id 'java-library'
+        id 'org.springframework.boot' version "${springBootVersion}"
+        id 'io.spring.dependency-management' version "$springDependencyManagementVersion"
+        id 'maven-publish'
+    }
+    repositories {
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'CreditModuleChallenge'
+
+gradle.ext {
+
+    coreModuleName = 'inghub-core'
+    coreModulePath = 'inghub-core'
+    coreProjectName = ":${coreModuleName}"
+    appModuleName = 'inghub-app'
+    appModulePath = 'inghub-app'
+    appProjectName = ":${appModuleName}"
+
+    // Environment
+    environment = [
+            java    : [
+                    sourceCompatibility: 19,
+                    targetCompatibility: 19
+            ],
+            encoding: [
+                    type: 'UTF-8'
+            ],
+            maven   : [
+                    settingsXmlFilePath: System.getProperty("user.home") + '/.m2/settings.xml'
+            ],
+            docker  : [
+                    dockerFilePath     : rootDir.toString() + '/resources/docker/Dockerfile',
+                    settingsXmlFilePath: System.getProperty("user.home") + '/.docker/settings.xml'
+            ]
+    ]
+}
+include gradle.coreModuleName
+project(gradle.coreProjectName).projectDir = file(gradle.coreModulePath)
+include gradle.appModuleName
+project(gradle.appProjectName).projectDir = file(gradle.appModulePath)
