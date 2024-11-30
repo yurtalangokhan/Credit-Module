@@ -20,13 +20,16 @@ This Spring Boot application provides a backend API for managing customer and lo
 
 git clone https://github.com/yurtalangokhan/Credit-Module.git
 
-* cd CreditModuleChallenge
+* cd Credit-Module
 * docker compose -f docker-compose.yml -p inghub-stack up -d --build --force-recreate
 
 
 * gradle clean build
 * Debug mode configuration:
-  ![alt text](CreditModuleChallenge/Configuration.PNG "Configuration")
+  ![alt text](Configuration.PNG "Configuration")
+  
+ * After running the code and creating the database, change the create on 
+    jpa/hibernate/ddl-auto: create property from address Credit-Module\inghub-app\src\main\resources to update!
 
 
 ###API Reference
