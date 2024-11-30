@@ -18,7 +18,7 @@ This Spring Boot application provides a backend API for managing customer and lo
 
 * Clone the repository using Git:
 
-git clone https://github.com/yourusername/yourprojectname.git
+git clone https://github.com/yurtalangokhan/Credit-Module.git
 
 * cd CreditModuleChallenge
 * docker compose -f docker-compose.yml -p inghub-stack up -d --build --force-recreate
@@ -26,7 +26,7 @@ git clone https://github.com/yourusername/yourprojectname.git
 
 * gradle clean build
 * Debug mode configuration:
-  ![alt text](Configuration.PNG "Configuration")
+  ![alt text](CreditModuleChallenge/Configuration.PNG "Configuration")
 
 
 ###API Reference
