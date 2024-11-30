@@ -2,9 +2,9 @@ allprojects {
 	apply plugin: 'java'
 	apply plugin: 'java-library'
 	apply plugin: 'jacoco'
-	apply plugin: 'maven-publish'
 	apply plugin: 'idea'
-	group 'tr.com.havelsan.main.core'
+	apply plugin: 'groovy'
+	group 'com.inghub.credit'
 
 	version(projectVersion)
 
@@ -67,7 +67,21 @@ subprojects {
 				[group: 'com.querydsl', name: 'querydsl-apt', version: queryDslVersion, classifier: 'jakarta'],
 				[group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: jakartaPersistenceVersion],
 				[group: 'org.mapstruct', name: 'mapstruct-processor', version: mapStructVersion],
-				[group: 'org.projectlombok', name: 'lombok', version: lombokVersion]
+				[group: 'org.projectlombok', name: 'lombok', version: lombokVersion],
+				[group: 'org.projectlombok', name: 'lombok-mapstruct-binding', version: lombokMapStructVersion],
 		)
+
+		testImplementation(
+				[group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion],
+				[group: 'org.assertj', name: 'assertj-core', version: assertjVersion],
+				[group: 'org.mockito', name: 'mockito-core', version: mockitoCore],
+				[group: 'org.mockito', name: 'mockito-inline', version: mockitoInline],
+				[group: 'org.mockito', name: 'mockito-junit-jupiter', version: mockitoJunitJupiter],
+		)
+
+		runtimeOnly(
+				[group: 'org.postgresql', name: 'postgresql', version: postgreSqlVersion]
+		)
+		testAnnotationProcessor(group: 'org.mapstruct', name: 'mapstruct-processor', version: mapStructVersion)
 	}
 }

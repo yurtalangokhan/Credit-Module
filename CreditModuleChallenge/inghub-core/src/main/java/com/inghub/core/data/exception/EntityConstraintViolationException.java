@@ -15,6 +15,6 @@ public class EntityConstraintViolationException extends BaseUncheckedException {
     }
 
     public EntityConstraintViolationException(String[] messageParams) {
-        super(new ExceptionDetail(code, messageParams));
+        super(new ExceptionDetail(code, code, messageParams));
     }
 }

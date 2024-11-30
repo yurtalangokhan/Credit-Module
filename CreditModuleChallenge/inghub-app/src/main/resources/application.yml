@@ -1,0 +1,81 @@
+server:
+  port: 9050
+  max-http-request-header-size: 1MB
+info:
+  build:
+    version: '@project.version@'
+    description: '@project.description@'
+  app:
+    name: ${spring.application.name}
+
+springdoc:
+  show-actuator: false
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
+
+spring:
+  application:
+    name: "inghub-app"
+    version: '@project.version@'
+    description: '@project.description@'
+    swagger:
+      enabled: true
+  config:
+    activate:
+      on-profile: dev
+    import:
+      - optional:classpath:credit-application.yml
+  main:
+    allow-bean-definition-overriding: true
+  jpa:
+    database: POSTGRESQL
+    show_sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      schema-locations: classpath:sql/schema.sql
+      mode: always
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres #host.docker.internal
+    username: inghub
+    password: inghub123
+    driver-class-name: ${POSTGRES_DRIVER:org.postgresql.Driver}
+  jackson:
+    mapper:
+      DEFAULT_VIEW_INCLUSION: true
+  output:
+    ansi:
+      enabled: DETECT
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+management:
+  endpoint:
+    health:
+      show-details: ${SHOW_HEALTH_CHECK_DETAILS:always}
+    restart:
+      enabled: ${RESTART_ENABLED:true}
+    shutdown:
+      enabled: ${SHUTDOWN_ENABLED:true}
+  endpoints:
+    cors:
+      allowedOrigins: '*'
+      allowedHeaders: '*'
+      allowedMethods: '*'
+      allowCredentials: true
+    web:
+      exposure:
+        include: '*'
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 300000
+        readtimeout: 300000
+
+

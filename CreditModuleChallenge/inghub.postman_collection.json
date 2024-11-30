@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "0b168d41-ee0a-41e4-b764-b1626ecb4f6c",
+		"name": "inghub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Gökhan\",\r\n    \"surname\": \"yurtalan\",\r\n    \"creditLimit\":10000,\r\n    \"usedCreditLimit\":0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9050/customerService/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9050",
+					"path": [
+						"customerService",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"uuid\": \"d942906a-af1d-11ef-8af3-094e67ed91e7\",\r\n    \"createdDate\": \"2024-11-30T16:20:20.615591\",\r\n    \"updatedDate\": \"2024-11-30T16:20:20.617622\",\r\n    \"createdBy\": \"admin\",\r\n    \"updatedBy\": \"admin\",\r\n    \"name\": \"Gökhan\",\r\n    \"surname\": \"Yurtalan\",\r\n    \"creditLimit\": 20000.000,\r\n    \"usedCreditLimit\": 0.000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9050/customerService/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9050",
+					"path": [
+						"customerService",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer GetById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9050/customerService/customer/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9050",
+					"path": [
+						"customerService",
+						"customer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Loan Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customerId\": 1,\r\n  \"loanAmount\": 50000,\r\n  \"numberOfInstallment\": \"Nine\",\r\n  \"interestRate\": 0.5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9050/loanService/loan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9050",
+					"path": [
+						"loanService",
+						"loan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Loan",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"loanId\": 1,\r\n  \"amount\": 1300\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9050/loanService/loan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9050",
+					"path": [
+						"loanService",
+						"loan"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

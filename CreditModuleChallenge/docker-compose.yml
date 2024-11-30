@@ -1,0 +1,27 @@
+name: inghub
+
+networks:
+  inghub:
+    external: true
+
+services:
+  inghub-postgres:
+    image: postgres:latest
+    container_name: inghub-postgres
+    #hostname: localhost
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=inghub
+      - POSTGRES_PASSWORD=inghub123
+      - PGDATA=/data/postgres
+    volumes:
+      - inghub-postgres:/data/postgres
+      - inghub-postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+
+volumes:
+  inghub-postgres:
+    driver: local
+    name: data-inghub-postgres

@@ -1,0 +1,19 @@
+application:
+  module:
+    name: credit
+    inghub:
+      services:
+        url: http://127.0.0.1:9050
+        credit:
+          customer:
+            contextPath: /
+            controllerPath: customerService/customer
+            path: ${application.module.inghub.services.credit.customer.contextPath}${application.module.inghub.services.credit.customer.controllerPath}
+          loan:
+            contextPath: /
+            controllerPath: loanService/loan
+            path: ${application.module.inghub.services.credit.loan.contextPath}${application.module.inghub.services.credit.loan.controllerPath}
+          loanInstallment:
+            contextPath: /
+            controllerPath: loanInstallmentService/loanInstallment
+            path: ${application.module.inghub.services.credit.loanInstallment.contextPath}${application.module.inghub.services.credit.loanInstallment.controllerPath}

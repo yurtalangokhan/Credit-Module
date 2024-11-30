@@ -22,12 +22,19 @@ repositories {
 	}
 }
 
+test {
+	useJUnitPlatform()
+}
+
 java {
 	sourceCompatibility = gradle.environment.java.sourceCompatibility
 	targetCompatibility = gradle.environment.java.targetCompatibility
 
 	compileJava.options.encoding = gradle.environment.encoding.type
 	compileTestJava.options.encoding = gradle.environment.encoding.type
+
+	withJavadocJar()
+	withSourcesJar()
 }
 
 idea {
@@ -68,6 +75,8 @@ dependencies {
 			[group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: springBootVersion],
 			[group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: springBootVersion],
 			[group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: springBootVersion],
+			[group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: springCloudStarterVersion],
+			[group: 'org.springframework.data', name: 'spring-data-commons', version: springBootVersion],
 
 			//	DB
 			[group: 'org.hibernate.orm', name: 'hibernate-core', version: hibernateVersion],
@@ -81,31 +90,8 @@ dependencies {
 			[group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion],
 			[group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion],
 			[group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jacksonVersion],
+			[group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: springDocOpenApiVersion],
 
-		/*	platform("org.springframework.cloud:spring-cloud-dependencies:${springCloudDependenciesVersion}"),
-			[group: 'com.google.code.gson', name: 'gson', version: gsonVersion],*/
+			platform("org.springframework.cloud:spring-cloud-dependencies:${springCloudDependenciesVersion}"),
 	)
-
-	runtimeOnly(
-			[group: 'org.postgresql', name: 'postgresql', version: postgreSqlVersion]
-	)
-	testImplementation(
-			[group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion],
-			[group: 'org.assertj', name: 'assertj-core', version: assertjVersion],
-			[group: 'org.mockito', name: 'mockito-core', version: mockitoCore],
-			[group: 'org.mockito', name: 'mockito-inline', version: mockitoInline],
-			[group: 'org.mockito', name: 'mockito-junit-jupiter', version: mockitoJunitJupiter],
-	)
-	compileOnly(
-			[group: 'org.mapstruct', name: 'mapstruct', version: mapStructVersion],
-			[group: 'org.mapstruct', name: 'mapstruct-processor', version: mapStructVersion],
-			[group: 'org.projectlombok', name: 'lombok', version: lombokVersion]
-	)
-	annotationProcessor(
-			[group: 'com.querydsl', name: 'querydsl-apt', version: queryDslVersion, classifier: 'jakarta'],
-			[group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: jakartaPersistenceVersion],
-			[group: 'org.mapstruct', name: 'mapstruct-processor', version: mapStructVersion],
-			[group: 'org.projectlombok', name: 'lombok', version: lombokVersion]
-	)
-	testAnnotationProcessor(group: 'org.mapstruct', name: 'mapstruct-processor', version: mapStructVersion)
 }
