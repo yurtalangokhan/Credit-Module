@@ -1,6 +1,6 @@
 # Project Name
 
-INGHUB Credit Module Challenge
+Credit Module Challenge
 
 ## Description
 
